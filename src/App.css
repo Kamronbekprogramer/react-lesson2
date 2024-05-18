@@ -29,3 +29,13 @@ button {
   background-color: white;
 
 }
+
+.count {
+  margin-top: 10px;
+  
+
+  button {
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+}

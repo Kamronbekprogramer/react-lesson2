@@ -26,16 +26,20 @@ function App() {
   };
 
   const addIncrease = (index) => {
+    
     const newCounters = [...counters];
     newCounters[index] += 1;
     setCounters(newCounters);
   };
 
-  const addDecrease = (index) => {
+  const decrementCounter = (index) => {
     const newCounters = [...counters];
-    newCounters[index] -= 1;
+    if (newCounters[index] > 0) {
+      newCounters[index] -= 1;
+    }
     setCounters(newCounters);
   };
+  
 
   return (
     <>
@@ -68,7 +72,7 @@ function App() {
             <div key={index}>
               <button onClick={() => addIncrease(index)}>+</button>
               <span>{item}</span>
-              <button onClick={() => addDecrease(index)}>-</button>
+              <button onClick={() => decrementCounter(index)}>-</button>
             </div>
           );
         })}
