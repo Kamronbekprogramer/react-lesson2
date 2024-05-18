@@ -5,6 +5,8 @@ function App() {
   const [count, setCount] = useState(0);
   const [increase, setIncrease] = useState(0);
   const [login, setLogin] = useState(false);
+  const [counters, setCounters] = useState([0, 0, 0]);
+  const [add, setAdd] = useState([0, 0, 0]);
 
   const changeLogin = () => {
     setLogin(!login);
@@ -17,20 +19,36 @@ function App() {
   const handleIncrease = () => {
     setIncrease(increase + 1);
   };
+
+  const addCounter = () => {
+    setCounters([...counters, 0]);
+    setAdd([...add, 0]);
+  };
+
+  const addIncrease = (index) => {
+    const newCounters = [...counters];
+    newCounters[index] += 1;
+    setCounters(newCounters);
+  };
+
+  const addDecrease = (index) => {
+    const newCounters = [...counters];
+    newCounters[index] -= 1;
+    setCounters(newCounters);
+  };
+
   return (
     <>
       <div className="card">
         <h1>Task 1</h1>
         <h1> {count} qadam🚶‍♂️</h1>
         <button onClick={handleClick}>Yurish</button>
-        <button onClick={() => setCount((count) => (count = 0))}>reset</button>
+        <button onClick={() => setCount(0)}>reset</button>
 
         <div>
           <h1>Qadam kattaligi: {increase} metr🏃‍♂️</h1>
           <button onClick={handleIncrease}>Qadamni kattalashtirish</button>
-          <button onClick={() => setIncrease((increase) => (increase = 0))}>
-            reset
-          </button>
+          <button onClick={() => setIncrease(0)}>reset</button>
         </div>
       </div>
 
@@ -41,8 +59,23 @@ function App() {
         {login ? <h1>login</h1> : <h1>Salom mening ismim Kamronbek😊</h1>}
       </div>
       <div className="border"></div>
+
+      <div className="count">
+        <h1>Task 3</h1>
+        <button onClick={addCounter}>add counter</button>
+        {counters.map((item, index) => {
+          return (
+            <div key={index}>
+              <button onClick={() => addIncrease(index)}>+</button>
+              <span>{item}</span>
+              <button onClick={() => addDecrease(index)}>-</button>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }
 
 export default App;
+
